@@ -22,8 +22,10 @@ def fetch_api():
         try:
             raw_resp = requests.get(api_url)
             raw_resp.raise_for_status()
-        except:
-            return {"error": "Ensure your URL and API key is correct."}
+        except requests.exceptions.RequestException as e:
+            return {
+                "error": f"Ensure your URL and API key are correct. Error message: {e}"
+            }
 
         # Read API response into a Python dictionary
         resp = raw_resp.json()

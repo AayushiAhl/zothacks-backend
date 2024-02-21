@@ -1,4 +1,5 @@
-# api-workshop-starter-code
+# hacknights-w-2024-template-flask
+Enter a URL to call an API and see its response!
 
 ## 1. Pre-requisites
 
@@ -10,12 +11,12 @@ Ensure that you have Python installed. If you do not, see [here](https://www.pyt
 
     Using HTTPS:
     ```shell
-    git clone https://github.com/HackAtUCI/api-workshop-starter-code.git
+    git clone https://github.com/IanWearsHat/hacknights-w-2024-template-flask.git
     ```
 
     or SSH (you would need to set up an SSH key. See [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) for more information, otherwise use HTTPS):
     ```shell
-    git clone git@github.com:HackAtUCI/api-workshop-starter-code.git
+    git clone git@github.com:IanWearsHat/hacknights-w-2024-template-flask.git
     ```
 
 2. Create a virtual environment
