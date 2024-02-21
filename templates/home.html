@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/home.css">
+    <title>GET YOUR CATS!!!</title>
+</head>
+<body>
+    <div id="center-cat">
+        <img id="cat-image" src={{ img_url }} alt="random cat image"/>
+        <h1 id="name-header">{{ name }}</h1>
+        <h2 id="description">{{ description }}</h2>
+        <button id="get-cat">ACQUIRE ANOTHER GATTO</button>
+    </div>
+
+    <script>
+        function getCat() {
+            // the url_for function creates the url to the Flask endpoint
+            const cat_url = {{ url_for("acquire_cat")|tojson }};
+
+            // Calls the Flask endpoint to return a json string
+            // Then sets the image, name, and description with that json
+            fetch(cat_url)
+            .then(response => response.json())
+            .then((data) => {
+                let cat_img = document.getElementById("cat-image");
+                cat_img.setAttribute("src", data.img_url);
+
+                let nameHeader = document.getElementById("name-header");
+                nameHeader.innerHTML = data.name;
+
+                let desc = document.getElementById("description");
+                desc.innerHTML = data.description;
+            });
+        }
+
+        // bind the function to the get-cat button
+        document.getElementById("get-cat").addEventListener("click", getCat);
+    </script>
+</body>
+</html>
