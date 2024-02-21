@@ -1,29 +1,14 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
 }
 
-#center-cat {
+#content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    width: 70vw;
 }
 
-#center-cat>img {
-    max-height: 40vh;
-
-    margin-bottom: 1em;
-
-    border: solid 1rem;
-    border-radius: 20% 10%;
-}
-
-#name-header {
-    font-size: 48px;
+#response {
+    white-space: pre-wrap;
 }
