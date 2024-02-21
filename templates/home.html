@@ -9,15 +9,19 @@
 <body>
     <div id="content">
         <form id="api-form">
-            <input name="api-url" placeholder="Enter your url here (https://)" value="{{ request.form['api-url'] }}"></input>
+            <input id="api-url" name="api-url" placeholder="Enter your url here (https://)" value="{{ request.form['api-url'] }}"></input>
             <button id="submit-button">Fetch!</button>
         </form>
+        <h1>JSON Response</h1>
         <p id="response">Nothing yet...</p>
     </div>
 
     <script>
+        // form submission code
         document.getElementById("api-form").addEventListener("submit", function(event) {
+            // preventDefault to prevent reloading the page on form submission
             event.preventDefault();
+
             // the url_for function creates the url to the Flask endpoint
             const fetch_url = {{ url_for("fetch_api")|tojson }};
 
@@ -31,9 +35,40 @@
             .then((data) => {
                 // formatting the json to be readable
                 let formatted = JSON.stringify(data, null, '\t');
-                document.getElementById("response").innerHTML = formatted;
+                document.getElementById("response").innerHTML = syntaxHighlight(formatted);
             });
         });
+        
+        // function to highlight json syntax adapted from https://codepen.io/absolutedevelopment/pen/EpwVzN
+        function syntaxHighlight(json) {
+            if (typeof json != "string") {
+                json = JSON.stringify(json, null, "\t");
+            }
+            
+            json = json
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            
+            return json.replace(
+                /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+                function(match) {
+                    var cls = "number";
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                        cls = "key";
+                        } else {
+                        cls = "string";
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = "boolean";
+                    } else if (/null/.test(match)) {
+                        cls = "null";
+                    }
+                    return '<span class="' + cls + '">' + match + "</span>";
+                }
+            );
+            }
     </script>
 </body>
 </html>

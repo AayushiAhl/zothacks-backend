@@ -1,13 +1,11 @@
 from flask import Flask, request, render_template
 import requests
 
+
 app = Flask(__name__)
 
-# The API url that you are calling
-# For more info, see https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t
-api_url = "https://api.thecatapi.com/v1/images/search?has_breeds=1"
 
-
+# By default, a Flask route is set to respond to only GET requests
 @app.route("/")
 def home():
     """Called when navigating to the home page"""
@@ -16,6 +14,7 @@ def home():
 
 @app.route("/fetch-api", methods=["POST"])
 def fetch_api():
+    # This function will only run if a POST request is sent to Flask
     if request.method == "POST":
         api_url = request.form["api-url"]
 

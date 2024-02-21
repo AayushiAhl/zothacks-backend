@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: Consolas, monospace;
 }
 
 #content {
@@ -7,8 +8,35 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    padding: 6rem 10rem;
+}
+
+#api-url {
+    width: 500px;
 }
 
 #response {
     white-space: pre-wrap;
+
+    padding: 3rem;
+    border: solid black;
+}
+
+/* Color classes for syntax highlighting function in home.html */
+.string {
+    color: teal;
+}
+
+.number {
+    color: black;
+}
+
+.boolean,
+.null {
+    color: blue;
+}
+
+.key {
+    color: maroon;
 }
