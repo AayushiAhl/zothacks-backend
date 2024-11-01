@@ -16,13 +16,14 @@
         <p id="response">Nothing yet...</p>
     </div>
 
+    <!-- Javascript code written in the HTML file. Consider separating JS files from HTML! -->
     <script>
         // form submission code
         document.getElementById("api-form").addEventListener("submit", function(event) {
             // preventDefault to prevent reloading the page on form submission
             event.preventDefault();
 
-            // the url_for function creates the url to the Flask endpoint
+            // The url_for function creates the url to the Flask endpoint
             const fetch_url = {{ url_for("fetch_api")|tojson }};
 
             // Calls the Flask endpoint to return a json string
@@ -33,13 +34,13 @@
             })
             .then(response => response.json())
             .then((data) => {
-                // formatting the json to be readable
+                // Format the json to be readable
                 let formatted = JSON.stringify(data, null, '\t');
                 document.getElementById("response").innerHTML = syntaxHighlight(formatted);
             });
         });
         
-        // function to highlight json syntax adapted from https://codepen.io/absolutedevelopment/pen/EpwVzN
+        // Function to highlight json syntax adapted from https://codepen.io/absolutedevelopment/pen/EpwVzN
         function syntaxHighlight(json) {
             if (typeof json != "string") {
                 json = JSON.stringify(json, null, "\t");

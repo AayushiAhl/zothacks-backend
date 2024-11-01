@@ -1,6 +1,8 @@
 # hacknights-w-2024-template-flask
 Enter a URL to call an API and see its response!
 
+Sample API (Enter this into the box at the top once you successfully run the app!): https://swapi.dev/api/planets/1/
+
 ## 1. Pre-requisites
 
 Ensure that you have Python installed. If you do not, see [here](https://www.python.org/downloads/) to download it.

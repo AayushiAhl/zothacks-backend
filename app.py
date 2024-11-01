@@ -12,13 +12,14 @@ def home():
     return render_template("home.html")
 
 
+# This function will only run if a POST request is sent to Flask
 @app.route("/fetch-api", methods=["POST"])
 def fetch_api():
-    # This function will only run if a POST request is sent to Flask
     if request.method == "POST":
         api_url = request.form["api-url"]
 
-        # API call using requests library and get method
+        # API call using requests library and HTTP GET method
+        # HTTP Method Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
         try:
             raw_resp = requests.get(api_url)
             raw_resp.raise_for_status()
