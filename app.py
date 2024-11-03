@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, json
 import requests
 from flask_cors import CORS  # Import CORS
 import base64
+from image_classification import get_labels, image_classifier
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -14,6 +15,10 @@ def home():
 
 @app.route("/search", methods=['POST'])
 def search_route():
+    # result = classify_image()
+    #
+    # result[]
+
     # Get the radius parameter from the URL query string
     radius_miles = int(request.args.get('radius', 5))  # Default to 5 miles if not specified
     filter_food_bank = request.args.get('food_bank', 'false').lower() == 'true'
@@ -23,11 +28,16 @@ def search_route():
     data = request.json
     b64_image = data.get('image')  # Assuming the image is sent as 'image'
 
+    foo = image_classifier(get_labels(b64_image))
+    print(foo)
+
     # Remove the header if it exists
     if b64_image.startswith('data:image/png;base64,'):
         b64_image = b64_image.replace('data:image/png;base64,', '')
 
     image_data = base64.b64decode(b64_image)
+
+
 
     print(radius_miles)
 
