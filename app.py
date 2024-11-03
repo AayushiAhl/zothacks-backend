@@ -45,7 +45,7 @@ def search(radius_miles, filter_food_bank=False, filter_clothing=False, filter_g
     payload = ""
     headers = {
         "User-Agent": "insomnia/10.1.1",
-        "Authorization": "Bearer 5vNi9SZsglApgejhhn8r9WAFUUxVLF5ZH_ogxmX6-Ds-O4WSGd4JWpqufA0RCwL1eFqPGvlJuyw_dRA6tKAJ8Su1Kh5ZNyhhumzlVk6Yj0ysxNn2IJalFm79v5AmZ3Yx"
+        "Authorization": "Bearer 4EPvJ1pOp009xRw3T3YVHqJtbdG3a1Iy_SxqeScFtjjhn3U_L3u7r6-6-H7DPjsWyEDzuKBxiYoILnt2M1bUQEfgP6yTwuK381fGRMjxGwIh3AbMOwj5E7cJIe4mZ3Yx"
     }
 
     response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
