@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, json
 import requests
 from flask_cors import CORS  # Import CORS
+import base64
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -11,13 +12,22 @@ def home():
     """Called when navigating to the home page"""
     return render_template("home.html")
 
-@app.route("/search", methods=['GET'])
+@app.route("/search", methods=['POST'])
 def search_route():
     # Get the radius parameter from the URL query string
     radius_miles = int(request.args.get('radius', 5))  # Default to 5 miles if not specified
     filter_food_bank = request.args.get('food_bank', 'false').lower() == 'true'
     filter_clothing = request.args.get('clothing', 'false').lower() == 'true'
     filter_goodwill = request.args.get('goodwill', 'false').lower() == 'true'
+
+    data = request.json
+    b64_image = data.get('image')  # Assuming the image is sent as 'image'
+
+    # Remove the header if it exists
+    if b64_image.startswith('data:image/png;base64,'):
+        b64_image = b64_image.replace('data:image/png;base64,', '')
+
+    image_data = base64.b64decode(b64_image)
 
     print(radius_miles)
 
